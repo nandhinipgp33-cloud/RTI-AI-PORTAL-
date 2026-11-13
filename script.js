@@ -156,6 +156,40 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     voiceBtn.innerText = "Voice not supported in this browser";
 }
 
+// 📋 Copy RTI text
+document.getElementById("copyBtn").addEventListener("click", async function () {
+    const content = document.getElementById("outputRTI").value;
+
+    if (!content.trim()) {
+        alert("No RTI content to copy.");
+        return;
+    }
+
+    const copyButton = document.getElementById("copyBtn");
+    const originalText = copyButton.innerText;
+
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(content);
+        } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = content;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+        }
+
+        copyButton.innerText = "Copied";
+        setTimeout(() => {
+            copyButton.innerText = originalText;
+        }, 1500);
+    } catch (error) {
+        console.error("Copy failed:", error);
+        alert("Unable to copy text in this browser.");
+    }
+});
+
 // 📄 Download as PDF
 document.getElementById("downloadBtn").addEventListener("click", function () {
 
@@ -348,6 +382,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const assistantMessages = document.getElementById("assistantMessages");
   const assistantSend = document.getElementById("assistantSend");
   const assistantInput = document.getElementById("assistantInput");
+  const assistantVoice = document.getElementById("assistantVoice");
 
   if (!assistantToggle || !assistantPanel) {
     console.error("Chatbot elements not found in HTML.");
@@ -398,6 +433,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     assistantInput.value = "";
 
+  });
+
+  if (assistantVoice && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const voiceRecognition = new SpeechRecognition();
+
+    voiceRecognition.continuous = false;
+    voiceRecognition.interimResults = false;
+
+    assistantVoice.addEventListener("click", function () {
+      const selectedLanguage = document.getElementById("languageSelect").value;
+      voiceRecognition.lang = selectedLanguage === "Tamil" ? "ta-IN" : "en-IN";
+      voiceRecognition.start();
+    });
+
+    voiceRecognition.onresult = function (event) {
+      const transcript = event.results[0][0].transcript;
+      assistantInput.value = transcript;
+    };
+
+    voiceRecognition.onerror = function () {
+      addAssistantMessage("RTI Guide", "Voice input is unavailable right now.");
+    };
+  } else if (assistantVoice) {
+    assistantVoice.disabled = true;
+    assistantVoice.title = "Voice input not supported in this browser";
+  }
+
+  assistantInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      assistantSend.click();
+    }
   });
 
   // FAQ Answers
