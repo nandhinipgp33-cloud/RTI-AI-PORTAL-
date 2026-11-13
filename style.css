@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #1e3a8a;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #374fc7;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #e5e7eb;
+}
+#assistantWidget{
+position:fixed;
+bottom:20px;
+right:20px;
+font-family:Arial;
+z-index:999;
+}
+
+#assistantToggle{
+background:#2c7be5;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+}
+
+#assistantPanel {
+  display: none;
+  flex-direction: column;
+  width: 320px;
+  height: 420px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+#assistantHeader{
+background:#2c7be5;
+color:white;
+padding:12px;
+font-weight:bold;
+}
+
+#assistantMessages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+font-size:14px;
+}
+
+#assistantInputArea{
+display:flex;
+padding:6px;
+border-top:1px solid #eee;
+}
+
+#assistantInput{
+flex:1;
+padding:6px;
+}
+
+#assistantInputArea button{
+margin-left:4px;
+}
+#assistantFAQ{
+padding:8px;
+border-bottom:1px solid #eee;
+display:flex;
+flex-wrap:wrap;
+gap:5px;
+}
+
+.faqBtn{
+background:#f1f1f1;
+color:#000;              /* added to make text dark */
+border:none;
+padding:5px 8px;
+border-radius:6px;
+font-size:12px;
+cursor:pointer;
+}
+
+.faqBtn:hover{
+background:#e0e0e0;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RTI AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1 id="mainTitle">RTI Application Assistant</h1>
+        <p id="subTitle">AI-powered platform for Indian citizens</p>
+    </header>
+
+    <hr>
+
+    <!-- RTI INPUT SECTION -->
+    <section>
+
+        <label id="languageLabel">Select Language:</label>
+        <select id="languageSelect">
+            <option value="English">English</option>
+            <option value="Tamil">Tamil</option>
+        </select>
+
+        <br><br>
+
+        <h2 id="issueTitle">Describe Your Issue</h2>
+
+        <label id="categoryLabel">Issue Category:</label><br>
+        <select id="issueCategory">
+            <option>Road & Infrastructure</option>
+            <option>Water Supply</option>
+            <option>Electricity</option>
+            <option>Education</option>
+            <option>Health</option>
+        </select>
+
+        <br><br>
+
+        <label id="locationLabel">Your Location:</label><br>
+        <select id="location"></select>
+
+        <br><br>
+
+        <label id="problemLabel">Describe your problem:</label><br>
+        <textarea id="problemText" rows="5" cols="50"
+        placeholder="Explain your issue in simple words"></textarea>
+
+        <br><br>
+
+        <button id="voiceBtn">🎤 Speak Your Problem</button>
+
+    </section>
+
+    <hr>
+
+    <!-- AI OUTPUT SECTION -->
+    <section>
+        <h2 id="draftTitle">Generated RTI Draft</h2>
+
+        <textarea id="outputRTI" rows="10" cols="80"
+        placeholder="AI-generated RTI will appear here"></textarea>
+
+        <hr>
+
+        <h3 id="deadlineTitle">RTI Deadline Tracker</h3>
+        <p id="deadlineInfo"></p>
+        <button id="appealBtn" style="display:none;">Generate First Appeal</button>
+
+    </section>
+
+    <hr>
+
+    <!-- ACTIONS -->
+    <section>
+        <button id="generateBtn">Generate RTI using AI</button>
+        <button id="copyBtn">Copy RTI</button>
+        <button id="downloadBtn">Download RTI</button>
+    </section>
+
+    <hr>
+
+    <!-- FOOTER -->
+    <footer>
+        <p id="footerText">Built for transparency | RTI Act, 2005</p>
+    </footer>
+
+<!-- RTI Guide Assistant -->
+<div id="assistantWidget">
+  <button id="assistantToggle">💬 RTI Guide</button>
+
+  <div id="assistantPanel">
+    <div id="assistantHeader">RTI Guide Assistant</div>
+
+    <div id="assistantFAQ">
+      <button class="faqBtn" data-key="what_rti">What is RTI?</button>
+      <button class="faqBtn" data-key="how_apply">How to file RTI?</button>
+      <button class="faqBtn" data-key="appeal">RTI Appeal Process</button>
+      <button class="faqBtn" data-key="fees">RTI Fees</button>
+    </div>
+
+    <div id="assistantMessages"></div>
+
+    <div id="assistantInputArea">
+      <input id="assistantInput" placeholder="Ask about RTI..." />
+      <button id="assistantSend">Send</button>
+      <button id="assistantVoice">🎤</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPT MOVED HERE -->
+<script src="script.js"></script>
+
+</body>
+</html>
